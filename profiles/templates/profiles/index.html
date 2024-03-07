@@ -15,7 +15,7 @@
         <hr class="mb-0" />
         {% if profiles_list %}
         <ul class="list-group list-group-flush list-group-careers">
-          {{ profiles_list }} {% for profile in profiles_list %}
+          {% for profile in profiles_list %}
           <li class="list-group-item">
             <a
               href="{% url 'profiles:profiles' username=profile.user.username %}"

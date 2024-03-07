@@ -9,4 +9,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("profiles/", include("profiles.urls")),
     path("lettings/", include("lettings.urls")),
+    path("error/404/", views.handler404, name="404"),
+    path("error/500/", views.handler500, name="500"),
 ]

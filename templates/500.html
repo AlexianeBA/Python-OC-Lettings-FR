@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Erreur 404{% endblock title %}
+
+<div>
+  {% block content %}
+  <h1>Erreur 500</h1>
+  <p>Nous sommes désolés, mais quelque chose a mal tourné.</p>
+  <a class="btn fw-500 ms-lg-4 btn-primary px-10" href="{% url 'index' %}">
+    Home
+  </a>
+  {% endblock content %}
+</div>
