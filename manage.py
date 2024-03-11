@@ -1,9 +1,17 @@
 import os
 import sys
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
+    sentry_sdk.init(
+        dsn="https://322da723973989b5a940d90e0779dcf3@o4506824189739008.ingest.us.sentry.io/4506892738953216",
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+        send_default_pii=True,
+    )
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oc_lettings_site.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,5 +23,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
