@@ -1,6 +1,10 @@
 version: 2.1
 
-# Define the jobs we want to run for this project
+executors:
+  docker-executor:
+    docker:
+      - image: barbealexiane07531/oc-lettings-p13:latest
+
 jobs:
   build:
     executor: docker-executor
@@ -11,11 +15,12 @@ jobs:
       - run:
           name: Login to DockerHub
           command: echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-    docker:
-      - image: barbealexiane07531/oc-lettings-p13:latest
-    steps:
-      - checkout
       - run: echo "this is the build job"
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
 
       
   # test:
