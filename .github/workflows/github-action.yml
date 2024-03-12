@@ -37,7 +37,7 @@ jobs:
       - name: Collect static files
         run: |
           python3 manage.py collectstatic --noinput
-        working-directory: .python-oc-lettings-fr
+        working-directory: ./python-oc-lettings-fr
 
       - name: Build Docker image
         run: |
