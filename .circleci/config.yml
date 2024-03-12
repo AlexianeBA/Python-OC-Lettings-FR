@@ -3,7 +3,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: barbealexiane07531/oc-lettings-p13:latest
+      - image: barbealexiane07531/p13:latest
 
 jobs:
   build:
