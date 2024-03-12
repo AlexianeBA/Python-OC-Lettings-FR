@@ -3,7 +3,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:3.10
 
 jobs:
   setup:
@@ -23,7 +23,7 @@ jobs:
       - run: echo "this is the build job"
   build-docker-push:
     docker:
-      - image: barbealexiane07531/oc-lettings-p13:latest/python:3.10
+      - image: barbealexiane07531/oc-lettings-p13:latest
     steps:
       - checkout
       - setup_remote_docker
