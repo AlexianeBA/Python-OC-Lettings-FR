@@ -17,12 +17,6 @@ jobs:
           command: echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
       - run: echo "this is the build job"
 
-workflows:
-  build_and_test:
-    jobs:
-      - build
-
-      
   # test:
   #   docker:
   #     - image: barbealexiane07531/oc-lettings-p13:latest
