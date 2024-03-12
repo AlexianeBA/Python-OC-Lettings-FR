@@ -26,18 +26,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-        working-directory: /python-oc-lettings-fr/
+        working-directory: /Python-Oc-Lettings-FR/
 
       - name: Run Django tests
         run: |
           python3 manage.py test
-        working-directory: /python-oc-lettings-fr/
+        working-directory: /Python-Oc-Lettings-FR/
         if: ${{ github.ref == 'refs/heads/tests' }}
 
       - name: Collect static files
         run: |
           python3 manage.py collectstatic --noinput
-        working-directory: /python-oc-lettings-fr/
+        working-directory: /Python-Oc-Lettings-FR/
 
       - name: Build Docker image
         run: |
