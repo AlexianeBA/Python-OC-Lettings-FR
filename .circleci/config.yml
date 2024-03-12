@@ -1,37 +1,37 @@
+# CircleCi version
 version: 2.1
 
-executors:
-  docker-executor:
-    docker:
-      - image: barbealexiane07531/p13:latest
+orbs:
+  python: circleci/python@2.1.1
 
 jobs:
-  build:
-    executor: docker-executor
+  build-and-test:
+    executor: python/default
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - python/install-packages:
+          pip-dependency-file: requirements.txt
+          pkg-manager: pip
       - run:
-          name: Install Docker
-          command: |
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            sudo apt-get update
-            sudo apt-get -y install docker-ce
+          name: Run Tests
+          command: pytest
       - run:
-          name: Login to DockerHub
-          command: echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-      - run: echo "this is the build job"
-    # test:
-#   docker:
-#     - image: barbealexiane07531/oc-lettings-p13:latest
-#   steps:
-#     - checkout
-#     - run: echo "this is the test job"
+          name: Run Linting PEP8
+          command: flake8
 
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      # - test
+  build-docker-push:
+    docker:
+      - image: barbealexiane07531/oc-lettings-p13:latest/python:3.9.12
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t $DOCKER_USERNAME/$DOCKER_REPOSITORY:$CIRCLE_SHA1 .
+      - run:
+          name: Push Docker Image
+          command: |
+            echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+            docker tag $DOCKER_USERNAME/$DOCKER_REPOSITORY:$CIRCLE_SHA1 $DOCKER_USERNAME/$DOCKER_REPOSITORY:latest
+            docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$CIRCLE_SHA1
+            docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:latest
