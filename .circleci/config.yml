@@ -6,8 +6,7 @@ executors:
       - image: barbealexiane07531/p13:latest
 
 jobs:
-  build:
-    executor: docker-executor
+  executor: docker-executor
     steps:
       - checkout
       - setup_remote_docker:
