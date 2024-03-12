@@ -22,7 +22,7 @@ jobs:
       - run: echo "this is the build job"
   build-docker-push:
     executor: docker-executor
-    context: docker-context
+
     steps:
       - checkout
       - setup_remote_docker
@@ -42,4 +42,5 @@ workflows:
     jobs:
       - setup
       - build
-      - build-docker-push
+      - build-docker-push:
+          context: docker-context
