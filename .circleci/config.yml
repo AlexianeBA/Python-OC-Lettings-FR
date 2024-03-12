@@ -3,27 +3,16 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: cimg/python:3.10.2
+      - image: circleci/python:3.7
 
 jobs:
-  setup:
-    executor: docker-executor
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-
-      - run:
-          name: Login to DockerHub
-          command: echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
   build:
     executor: docker-executor
     steps:
       - checkout
       - run: echo "this is the build job"
   build-docker-push:
-    docker:
-      - image: barbealexiane07531/p13
+    executor: docker-executor
     steps:
       - checkout
       - setup_remote_docker
@@ -42,9 +31,5 @@ workflows:
   build_and_test:
     jobs:
       - setup
-      - build:
-          requires:
-            - setup
-      - build-docker-push:
-          requires:
-            - build
+      - build
+      - build-docker-push
