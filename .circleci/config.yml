@@ -1,60 +1,23 @@
-name: CI/CD Pipeline
+version: 2.1
 
-on:
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - "*"
-
+# Define the jobs we want to run for this project
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    docker:
+      - image: barbealexiane07531/oc-lettings-p13:latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - checkout
+      - run: echo "this is the build job"
+  # test:
+  #   docker:
+  #     - image: barbealexiane07531/oc-lettings-p13:latest
+  #   steps:
+  #     - checkout
+  #     - run: echo "this is the test job"
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-        working-directory: /Python-Oc-Lettings-FR/
-
-      - name: Run Django tests
-        run: |
-          python3 manage.py test
-        working-directory: /Python-Oc-Lettings-FR/
-        if: ${{ github.ref == 'refs/heads/tests' }}
-
-      - name: Collect static files
-        run: |
-          python3 manage.py collectstatic --noinput
-        working-directory: /Python-Oc-Lettings-FR/
-
-      - name: Build Docker image
-        run: |
-          docker build -t HolidayHomes .
-          docker tag HolidayHomes barbealexiane07531/HolidayHomes
-        if: ${{ github.ref == 'refs/heads/master' }}
-
-      - name: Push Docker image to registry
-        run: |
-          docker push barbealexiane07531/HolidayHomes
-        if: ${{ github.ref == 'refs/heads/master' }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: "HolidayHomes"
-          slot-name: "production"
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
-        if: ${{ github.ref == 'refs/heads/master' }}
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      # - test
