@@ -23,7 +23,7 @@ jobs:
       - run: echo "this is the build job"
   build-docker-push:
     docker:
-      - image: barbealexiane07531/oc-lettings-p13:latest
+      - image: barbealexiane07531/p13:latest
     steps:
       - checkout
       - setup_remote_docker
