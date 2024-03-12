@@ -3,9 +3,18 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/python:3.10.2
 
 jobs:
+  setup:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Login to DockerHub
+          command: echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
   build:
     executor: docker-executor
     steps:
