@@ -35,3 +35,10 @@ jobs:
             docker tag $DOCKER_USERNAME/$DOCKER_REPOSITORY:$CIRCLE_SHA1 $DOCKER_USERNAME/$DOCKER_REPOSITORY:latest
             docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$CIRCLE_SHA1
             docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:latest
+workflows:
+  build_and_test:
+    jobs:
+      - setup
+      - build:
+          requires:
+            - setup
