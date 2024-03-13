@@ -40,15 +40,30 @@ jobs:
             docker tag $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
-  run-app:
-    executor: docker-executor
-    steps:
-      - setup_remote_docker
       - run:
-          name: Run Docker Image
-          command: |
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker run -d -p 8000:8000 $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
+        name: Install Azure CLI
+        command: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    - run:
+        name: Login to Azure
+        command: |
+          echo $AZURE_PASSWORD | az login -u $AZURE_USERNAME --password-stdin
+    - run:
+        name: Login to Azure Container Registry
+        command: |
+          az acr login --name $ACR_NAME
+    - run:
+        name: Tag Docker image
+        command: |
+          docker tag $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest
+    - run:
+        name: Push Docker image to Azure Container Registry
+        command: |
+          docker push $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest
+    - run:
+        name: Deploy to Azure Container Instances
+        command: |
+          az container create --resource-group $RESOURCE_GROUP --name $ACI_NAME --image $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest --dns-name-label $ACI_NAME --ports 80
 
 workflows:
   build_and_test:
@@ -57,6 +72,3 @@ workflows:
       - build
       - build-docker-push:
           context: docker-context
-      - run-app:
-          requires:
-            - build-docker-push
