@@ -45,9 +45,9 @@ jobs:
           command: |
             curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
       - run:
-          name: Login to Azure
-          command: |
-            echo $AZURE_PASSWORD | az login -u $AZURE_USERNAME --password-stdin
+        name: Login to Azure
+        command: |
+          az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
       - run:
           name: Login to Azure Container Registry
           command: |
