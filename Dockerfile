@@ -5,7 +5,7 @@ WORKDIR /Python-Oc-Lettings-FR
 COPY requirements.txt /Python-Oc-Lettings-FR/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY templates /Python-Oc-Lettings-FR/templates
+
 
 COPY . /Python-Oc-Lettings-FR/
 
