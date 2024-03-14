@@ -40,30 +40,6 @@ jobs:
             docker tag $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
-      - run:
-          name: Install Azure CLI
-          command: |
-            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-      - run:
-          name: Login to Azure
-          command: |
-            az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_PASSWORD --tenant $AZURE_TENANT_ID
-      - run:
-          name: Login to Azure Container Registry
-          command: |
-            az acr login --name $ACR_NAME
-      - run:
-          name: Tag Docker image
-          command: |
-            docker tag $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest
-      - run:
-          name: Push Docker image to Azure Container Registry
-          command: |
-            docker push $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest
-      - run:
-          name: Deploy to Azure Container Instances
-          command: |
-            az container create --resource-group $RESOURCE_GROUP --name $ACI_NAME --image $ACR_NAME.azurecr.io/$DOCKERHUB_REPO:latest --dns-name-label $ACI_NAME --ports 80
 
 workflows:
   build_and_test:
