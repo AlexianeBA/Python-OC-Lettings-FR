@@ -1,10 +1,8 @@
 version: 2.1
-
 executors:
   docker-executor:
     docker:
-      - image: cimg/python:3.10.2
-
+      - image: circleci/python:3.7
 jobs:
   setup:
     executor: docker-executor
@@ -20,6 +18,15 @@ jobs:
     steps:
       - checkout
       - run: echo "this is the build job"
+  test:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: |
+            echo "python3 manage.py test"
+
   build-docker-push:
     executor: docker-executor
     steps:
@@ -40,11 +47,11 @@ jobs:
             docker tag $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:$CIRCLE_SHA1
             docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
-
 workflows:
   build_and_test:
     jobs:
       - setup
       - build
+      - test
       - build-docker-push:
           context: docker-context
