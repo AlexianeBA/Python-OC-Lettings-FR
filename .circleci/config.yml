@@ -26,7 +26,10 @@ jobs:
           name: Run tests
           command: |
             echo "python3 manage.py test"
-
+      - run:
+          name: Generate coverage report
+          command: |
+            echo "coverage report"
   build-docker-push:
     executor: docker-executor
     steps:
