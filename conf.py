@@ -85,4 +85,4 @@ texinfo_documents = [
         "Miscellaneous",
     ),
 ]
-master_doc = "docs/index"
+master_doc = "index"
