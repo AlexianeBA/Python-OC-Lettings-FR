@@ -9,7 +9,6 @@ Bienvenue dans la documentation de Holiday Homes !
    :caption: Sommaire:
 
       installation
-      configuration
       utilisation
-      developpement
+      deploiement
       
