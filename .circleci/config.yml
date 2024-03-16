@@ -26,10 +26,6 @@ jobs:
           name: Run tests
           command: |
             echo "python3 manage.py test"
-      - run:
-          name: Generate coverage report
-          command: |
-            echo "coverage report"
   build-docker-push:
     executor: docker-executor
     steps:
@@ -56,8 +52,5 @@ workflows:
       - setup
       - build
       - test
-      - coverage:
-          requires:
-            - test
       - build-docker-push:
           context: docker-context
