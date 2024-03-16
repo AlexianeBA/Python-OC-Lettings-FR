@@ -8,7 +8,7 @@ Bienvenue dans la documentation de Holiday Homes !
    :maxdepth: 2
    :caption: Sommaire:
 
-      installation
-      utilisation
-      deploiement
+   installation
+   utilisation
+   deploiement
       
