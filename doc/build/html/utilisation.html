@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to Holliday Homes’s documentation! &#8212; Holiday Homes  documentation</title>
+    <title>Guide d’utilisation &#8212; Holiday Homes  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
@@ -13,7 +13,8 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Description" href="description.html" />
+    <link rel="next" title="Déploiement" href="deploiement.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,35 +32,39 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-holliday-homes-s-documentation">
-<h1>Welcome to Holliday Homes’s documentation!<a class="headerlink" href="#welcome-to-holliday-homes-s-documentation" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="description.html">Description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#clonage-du-depot">Clonage du dépôt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#navigation-vers-le-repertoire-du-projet">Navigation vers le répertoire du projet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#creation-de-l-environnement-virtuel">Création de l’environnement virtuel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#activation-de-l-environnement-virtuel">Activation de l’environnement virtuel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-des-dependances">Installation des dépendances</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utilisation.html#acces-au-site">Accès au site</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilisation.html#acces-aux-profils-utilisateurs-profiles">Accès aux profils utilisateurs (profiles)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilisation.html#acces-aux-locations-lettings">Accès aux locations (lettings)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deploiement.html#creation-d-une-application-sur-azure-web-app">Création d’une application sur Azure Web App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deploiement.html#configuration-de-circleci">Configuration de CircleCI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deploiement.html#processus-de-deploiement">Processus de déploiement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deploiement.html#workflow">Workflow</a></li>
-</ul>
-</li>
-</ul>
+  <section id="guide-d-utilisation">
+<h1>Guide d’utilisation<a class="headerlink" href="#guide-d-utilisation" title="Link to this heading">¶</a></h1>
+<section id="acces-au-site">
+<h2>Accès au site<a class="headerlink" href="#acces-au-site" title="Link to this heading">¶</a></h2>
+<p>Après un déploiement réussi, accédez au site en entrant l’URL suivante dans votre navigateur :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://ocletting.azurewebsites.net/
+</pre></div>
 </div>
+</section>
+<section id="acces-aux-profils-utilisateurs-profiles">
+<h2>Accès aux profils utilisateurs (profiles)<a class="headerlink" href="#acces-aux-profils-utilisateurs-profiles" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Cliquez sur le bouton “Profiles” pour voir la liste des profils utilisateurs.</p></li>
+<li><p>Cliquez sur un profil pour voir sa page détaillée.</p></li>
+</ol>
+<p>Les URLs sont de la forme :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://ocletting.azurewebsites.net/profiles/
+https://ocletting.azurewebsites.net/profiles/&lt;nom_d&#39;utilisateur&gt;
+</pre></div>
+</div>
+</section>
+<section id="acces-aux-locations-lettings">
+<h2>Accès aux locations (lettings)<a class="headerlink" href="#acces-aux-locations-lettings" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Cliquez sur le bouton “Lettings” pour voir la liste des locations.</p></li>
+<li><p>Cliquez sur une location pour voir sa page détaillée.</p></li>
+</ol>
+<p>Les URLs sont de la forme :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://ocletting.azurewebsites.net/lettings/
+https://ocletting.azurewebsites.net/lettings/&lt;id_de_la_location&gt;
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -69,7 +74,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Holiday Homes</a></h1>
+<h1 class="logo"><a href="index.html">Holiday Homes</a></h1>
 
 
 
@@ -89,18 +94,24 @@
 
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Guide d’utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#acces-au-site">Accès au site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acces-aux-profils-utilisateurs-profiles">Accès aux profils utilisateurs (profiles)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acces-aux-locations-lettings">Accès aux locations (lettings)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="description.html" title="next chapter">Description</a></li>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="deploiement.html" title="next chapter">Déploiement</a></li>
   </ul></li>
 </ul>
 </div>
@@ -130,7 +141,7 @@
       &#169;.
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/utilisation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
