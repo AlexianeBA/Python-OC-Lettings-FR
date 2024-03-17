@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Déploiement &#8212; Holiday Homes  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Holliday Homes’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="deploiement">
+<h1>Déploiement<a class="headerlink" href="#deploiement" title="Link to this heading">¶</a></h1>
+<p>Le déploiement de l’application est automatisé avec CircleCI et Azure Web App. Le fichier <cite>config.yml</cite> dans le répertoire <cite>.circleci</cite> définit les étapes de déploiement.</p>
+<section id="creation-d-une-application-sur-azure-web-app">
+<h2>Création d’une application sur Azure Web App<a class="headerlink" href="#creation-d-une-application-sur-azure-web-app" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connectez-vous à Azure avec votre compte.</p></li>
+<li><p>Naviguez vers “App Services”.</p></li>
+<li><p>Cliquez sur “Add” pour créer une nouvelle application.</p></li>
+<li><p>Remplissez les détails de l’application, y compris le nom, l’abonnement, le groupe de ressources, le plan de service et le runtime stack.</p></li>
+<li><p>Cliquez sur “Review + create” pour créer l’application.</p></li>
+</ol>
+</section>
+<section id="configuration-de-circleci">
+<h2>Configuration de CircleCI<a class="headerlink" href="#configuration-de-circleci" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connectez-vous à CircleCI avec votre compte GitHub.</p></li>
+<li><p>Ajoutez votre projet à CircleCI.</p></li>
+<li><p>Configurez les variables d’environnement suivantes dans les paramètres du projet CircleCI :</p>
+<ul class="simple">
+<li><p><cite>DOCKERHUB_USERNAME</cite> : Votre nom d’utilisateur DockerHub.</p></li>
+<li><p><cite>DOCKERHUB_PASSWORD</cite> : Votre mot de passe DockerHub.</p></li>
+<li><p><cite>DOCKERHUB_REPO</cite> : Le nom du dépôt DockerHub où l’image Docker de l’application sera poussée.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="processus-de-deploiement">
+<h2>Processus de déploiement<a class="headerlink" href="#processus-de-deploiement" title="Link to this heading">¶</a></h2>
+<p>Le déploiement se fait en plusieurs étapes :</p>
+<ol class="arabic simple">
+<li><p><strong>Setup</strong> : Cette étape prépare l’environnement de déploiement. Elle se connecte à DockerHub en utilisant les identifiants fournis.</p></li>
+<li><p><strong>Build</strong> : Cette étape est actuellement configurée pour afficher le message “this is the build job”. Vous pouvez la modifier pour construire votre application si nécessaire.</p></li>
+<li><p><strong>Build Docker and Push</strong> : Cette étape construit une image Docker de l’application et la pousse à DockerHub. Elle supprime d’abord l’ancienne image Docker, si elle existe. Ensuite, elle construit une nouvelle image Docker avec le SHA du commit actuel comme tag. Enfin, elle pousse l’image Docker au dépôt DockerHub configuré.</p></li>
+<li><p><strong>Push to Azure Container Registry</strong> : Cette étape pousse l’image Docker à Azure Container Registry. Vous devez configurer CircleCI pour se connecter à Azure Container Registry en utilisant les identifiants fournis lors de la création du registre.</p></li>
+<li><p><strong>Déploiement sur Azure Web App</strong> : Une fois l’image Docker poussée à Azure Container Registry, Azure Web App la récupère et déploie l’application sur votre serveur Azure.</p></li>
+</ol>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
+<p>Le workflow <cite>build_and_test</cite> est configuré pour exécuter les jobs <cite>setup</cite>, <cite>build</cite>, <cite>build-docker-push</cite>, <cite>push-to-azure-container-registry</cite> et <cite>deploy-to-azure-web-app</cite> dans cet ordre.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Holiday Homes</a></h1>
+
+
+
+<p class="blurb">Orange County Lettings est une start-up dans le secteur de la location de biens immobiliers. La start-up est en pleine phase d’expansion aux États-Unis. L'objectif de ce projet est de faire évoluer le site web éxistant: réduction des diverses dettes techniques, refonte de l'architecture modulaire, ajout d'un pipeline CI/CD utilisant CircleCI et Azure.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=AlexianeBA&repo=Python-OC-Lettings-FR&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Déploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creation-d-une-application-sur-azure-web-app">Création d’une application sur Azure Web App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-de-circleci">Configuration de CircleCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processus-de-deploiement">Processus de déploiement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Holliday Homes’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      <a href="_sources/deploiement.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/AlexianeBA/Python-OC-Lettings-FR" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
