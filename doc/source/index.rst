@@ -14,6 +14,6 @@ Welcome to Holliday Homes's documentation!
    installation
    utilisation
    deploiement
-   technologies et langages utilisés
+   les technologies et les langages de programmation utilisés
 
 
