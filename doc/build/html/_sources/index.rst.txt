@@ -17,5 +17,6 @@ Welcome to Holliday Homes's documentation!
    technologie_and_langage
    interfaces
    quickstart
+   database_structure
 
 
