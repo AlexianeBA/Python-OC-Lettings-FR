@@ -15,5 +15,7 @@ Welcome to Holliday Homes's documentation!
    utilisation
    deploiement
    technologie_and_langage
+   interfaces
+   quickstart
 
 
