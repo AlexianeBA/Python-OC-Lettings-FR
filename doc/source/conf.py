@@ -38,7 +38,7 @@ html_theme = "alabaster"
 # further. For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "description": "Orange County Lettings est une start-up dans le secteur de la location de biens immobiliers. La start-up est en pleine phase d’expansion aux États-Unis. L'objectif de ce projet est de faire évoluer le site web éxistant: réduction des diverses dettes techniques, refonte de l'architecture modulaire, ajout d'un pipeline CI/CD utilisant CircleCI et Azure.",
+    "description": "Orange County Lettings est une start-up dans le secteur de la location de biens immobiliers.\nLa start-up est en pleine phase d’expansion aux États-Unis.\nL'objectif de ce projet est de faire évoluer le site web existant: réduction des diverses dettes techniques, refonte de l'architecture modulaire, ajout d'un pipeline CI/CD utilisant CircleCI et Azure.",
     "github_user": "AlexianeBA",
     "github_repo": "Python-OC-Lettings-FR",
     "github_banner": True,
