@@ -18,7 +18,7 @@ jobs:
           command: pip install flake8
       - run:
           name: Configure Flake8
-          command: echo -e "[flake8]\nignore = E501" > .flake8
+          command: echo -e "[flake8]\nmax-line-length = 400" > .flake8
       - run:
           name: Run Flake8
           command: flake8 .
