@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory, SimpleTestCase
 from .models import Letting, Address
 from django.urls import reverse, resolve
 from .views import index, letting
-from django.contrib.auth.models import User
+
 
 # Create your tests here.
 
