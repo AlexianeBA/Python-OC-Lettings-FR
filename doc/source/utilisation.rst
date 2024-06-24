@@ -8,7 +8,7 @@ Après un déploiement réussi, accédez au site en entrant l'URL suivante dans 
 
 .. code-block:: none
 
-   https://ocletting.azurewebsites.net/
+   https://holidayhomes.azurewebsites.net/
 
 
 
@@ -22,8 +22,8 @@ Les URLs sont de la forme :
 
 .. code-block:: none
 
-   https://ocletting.azurewebsites.net/profiles/
-   https://ocletting.azurewebsites.net/profiles/<nom_d'utilisateur>
+   https://holidayhomes.azurewebsites.net/profiles/
+   https://holidayhomes.azurewebsites.net/profiles/<nom_d'utilisateur>
 
 Accès aux locations (lettings)
 -------------------------------
@@ -35,5 +35,5 @@ Les URLs sont de la forme :
 
 .. code-block:: none
 
-   https://ocletting.azurewebsites.net/lettings/
-   https://ocletting.azurewebsites.net/lettings/<id_de_la_location>
+   https://holidayhomes.azurewebsites.net/lettings/
+   https://holidayhomes.azurewebsites.net/lettings/<id_de_la_location>
